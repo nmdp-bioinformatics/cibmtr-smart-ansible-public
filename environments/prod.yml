@@ -4,6 +4,7 @@
 installer_user: "ubuntu"
 services_host: "34.195.196.20"
 use_secure_http: true
+using_aws_elb: false
 use_custom_ssl_certificates: true
 custom_ssl_certificates_path: "/home/ubuntu/certificates"
 aws_output_format: "json"

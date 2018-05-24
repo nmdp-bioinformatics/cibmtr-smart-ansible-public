@@ -8,7 +8,7 @@ server {
     server_name {{pwm_server_external_host}};
 {% endif %}
 
-{% if use_secure_http %}
+{% if use_secure_http and not using_aws_elb %}
     listen {{pwm_server_external_port}} ssl;
     ssl_certificate {{nginx_home}}/ssl/{{certificate_crt_filename}};
     ssl_certificate_key {{nginx_home}}/ssl/{{certificate_key_filename}};

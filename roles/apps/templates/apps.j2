@@ -6,7 +6,7 @@ upstream apps {
 server {
     server_name {{apps_server_external_host}};
 
-{% if use_secure_http %}
+{% if use_secure_http and not using_aws_elb %}
     listen {{apps_server_external_port}} ssl;
     ssl_certificate {{nginx_home}}/ssl/{{certificate_crt_filename}};
     ssl_certificate_key {{nginx_home}}/ssl/{{certificate_key_filename}};
@@ -30,7 +30,7 @@ server {
     }
 }
 
-{% if apps_server_external_port != 80 and use_secure_http %}
+{% if apps_server_external_port != 80 and use_secure_http and not using_aws_elb %}
 server {
     server_name {{apps_server_external_host}};
     listen 80;

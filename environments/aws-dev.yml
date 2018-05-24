@@ -4,6 +4,7 @@
 installer_user: "ubuntu"
 services_host: "localhost"
 use_secure_http: true
+using_aws_elb: true
 use_custom_ssl_certificates: false
 custom_ssl_certificates_path:
 aws_output_format: "json"
