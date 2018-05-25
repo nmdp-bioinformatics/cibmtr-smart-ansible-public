@@ -12,13 +12,13 @@ mysql_host: "localhost"
 email_account_description: "SMART Account Services"
 email_smtp_port: "587"
 email_admin_address: "admin@example.com"
-email_contact_address: "contact@example.com"
+email_contact_addresss: "contact@example.com"
 apacheds_server_external_host: "{{services_host}}"
 apacheds_server_installer_enabled: true
 pwm_server_external_host: "cibmtr-smart-dev-pwm.b12x.org"
 pwm_server_external_port: "443"
 pwm_unlocked: true
-pwm_sso_authentication_header_name: "changeme"
+pwm_sso_authentication_header_name: "CIBMTR-SMART Dev Sandbox"
 account_server_external_url: "{{pwm_server_external_url}}"
 auth_server_external_host: "cibmtr-smart-dev-auth.b12x.org"
 auth_server_external_port: "443"
@@ -32,7 +32,7 @@ api_server_oauth2_clientId: "hspc_resource_server"
 enable_monitoring: false
 enable_backup_restore_jobs: true
 enable_aws_snapshot: false
-enable_pwm: false
+enable_pwm: true
 enable_api_sample_data: true
 enable_mock_endpoints: false
 api_dstu2_server_external_host: "cibmtr-smart-dev-dstu2.b12x.org"
