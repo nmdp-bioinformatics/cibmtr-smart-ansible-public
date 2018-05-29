@@ -249,7 +249,7 @@ ELB Name:  cibmtr-smart-dev-sandman
 Protocol:  HTTP  
 Port:  8080  
 
-### SMART Apps
+### Password Management App
 
 (DNS Name:  cibmtr-smart-dev-pwm.b12x.org)  
 ELB Name:  cibmtr-smart-dev-pwm  
