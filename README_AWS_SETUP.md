@@ -153,7 +153,8 @@ HTTPS / TCP / 443 / Custom / 0.0.0.0/0 /
 _Outbound_  
 _Type_ / _Protocol_ / _Port Range_ / _Destination_ / _Description_  
 Custom TCP Rule / TCP / 8060 / 0.0.0.0/0 / Auth Server  
-Custom TCP Rule / TCP / 8070 - 8099 / 0.0.0.0/0 / Sandbox Manager & SMART Apps
+Custom TCP Rule / TCP / 8070 - 8099 / 0.0.0.0/0 / Sandbox Manager & SMART Apps  
+Custom TCP Rule / TCP / 12000 / 0.0.0.0/0 / Sandbox Manager API
 
 _Tags_  
 _Key_ / _Value_  
@@ -177,7 +178,8 @@ _Type_ / _Protocol_ / _Port Range_ / _Source_ / _Description_
 SSH / TCP / 22 / 192.149.74.10/32 / SSH from NMDP  
 SSH / TCP / 22 / 198.175.249.8/32 / SSH from NMDP  
 Custom TCP Rule / TCP / 9060 / sg-1625505e / Auth Server  
-Custom TCP Rule / TCP / 9070 - 9099 / sg-1625505e / Sandbox Manager & SMART Apps
+Custom TCP Rule / TCP / 9070 - 9099 / sg-1625505e / Sandbox Manager & SMART Apps  
+Custom TCP Rule / TCP / 12000 / sg-1625505e / Sandbox Manager API
 
 _Outbound_  
 _Type_ / _Protocol_ / _Port Range_ / _Destination_ / _Description_  
@@ -204,6 +206,7 @@ cibmtr-smart-dev-apps.b12x.org.
 cibmtr-smart-dev-dstu2.b12x.org.  
 cibmtr-smart-dev-pwm.b12x.org.  
 cibmtr-smart-dev-sandman.b12x.org.  
+cibmtr-smart-dev-sandman-api.b12x.org.  
 cibmtr-smart-dev-stu3.b12x.org.
 
 ### Example ELB CNAME Creation
@@ -243,6 +246,13 @@ Port:  8071
 ELB Name:  cibmtr-smart-dev-stu3  
 Protocol:  HTTP  
 Port:  8074  
+
+### Sandbox Manager API Server
+
+(DNS Name:  cibmtr-smart-dev-sandman-api.b12x.org)  
+ELB Name:  cibmtr-smart-dev-sandman-api  
+Protocol:  HTTP  
+Port:  12000  
 
 ### Sandbox Manager
 
