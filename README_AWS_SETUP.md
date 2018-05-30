@@ -15,13 +15,14 @@ Number of instances:  1
 Purchasing option: [ ] Request spot instances  
 Network:  vpc-2b2fef4a | default-vpc  
 Subnet:  subnet-1e6bcd46 | dev-apps-subnet-2 | us-east-1b  
-Auto-assign Public IP:  Enable  
+Auto-assign Public IP:  Enable (note: this is workaround for problems accesing apt repo)  
 IAM role:  None  
 Shutdown behavior:  Stop  
 Enable termination protection:  [ ] Protect against accidental termination  
 Monitoring:  [ ] Enable CloudWatch detailed monitoring  
 Tenancy:  Shared - Run a shared hardware instance  
-T2 Unlimited:  [ ] Enable  
+T2 Unlimited:  [ ] Enable
+
 _Network interfaces_  
 _Device_ / _Network Interface_ / _Subnet_ / _Primary IP_ / _Secondary IP addresses_ / _IPv6 IPs_  
 eth0 / New network interface / subnet-1e6bcd46 / Auto-assign / - / -  
@@ -50,7 +51,8 @@ select default-ssh-nmdp-aws and cibmtr-smart-ansible
 click **Review and Launch**
 
 _Step 7: Review Instance Launch_  
-click **Launch**  
+click **Launch**
+
 _Select an existing key pair or create a new key pair_  
 Choose an existing key pair  
 jschneid_nmdp  
@@ -63,7 +65,7 @@ click **Launch Instances**
 
 See also:  https://github.com/smart-on-fhir/installer
 
-Log into the EC2 instance.
+Log into the EC2 instance via SSH.
 
 ```
 ssh jschneider@jump.b12x.org
@@ -127,7 +129,7 @@ sed "s/use_secure_http/use_secure_http and not using_aws_elb/" \
 rm roles/common-role/templates/nginx_gateway_template.j2.orig
 ```
 
-Define ELB setup and corresponding DNS entries (see sections below).
+Define ELB setup and corresponding CNAME DNS entries (see sections below).
 
 Run the site.yml playbook for the aws-dev environment.
 
