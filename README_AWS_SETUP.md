@@ -20,7 +20,7 @@ _Step 3: Configure Instance Details_
 | Purchasing option: | [ ] Request spot instances |
 | Network: | vpc-2b2fef4a \| default-vpc |
 | Subnet: | subnet-1e6bcd46 \| dev-apps-subnet-2 \| us-east-1b |
-| Auto-assign Public IP: | Enable (note: this is workaround for problems accesing apt repo) |
+| Auto-assign Public IP: | Enable (note: this is workaround for problems accessing apt repo) |
 | IAM role: | None |
 | Shutdown behavior: | Stop |
 | Enable termination protection: | [ ] Protect against accidental termination |
@@ -162,6 +162,8 @@ ansible-playbook site.yml -i "localhost," -c local \
 
 ### cibmtr-smart-ansible-elb
 
+|     |     |
+| --- | --- |
 | Group name: | cibmtr-smart-ansible-elb |
 | Description: | load balancer for (Ansible-based) standalone SMART sandbox |
 | VPC: | vpc-2b2fef4a \| default-vpc |
@@ -195,9 +197,11 @@ Note:  The assigned ID of cibmtr-smart-ansible-elb security group is sg-1625505e
 
 ### cibmtr-smart-ansible
 
-Group name:  cibmtr-smart-ansible  
-Description:  access to (Ansible-based) standalone SMART sandbox  
-VPC:  vpc-2b2fef4a | default-vpc
+|     |     |
+| --- | --- |
+| Group name: | cibmtr-smart-ansible |
+| Description: | access to (Ansible-based) standalone SMART sandbox |
+| VPC: | vpc-2b2fef4a | default-vpc |
 
 _Inbound_
 
@@ -246,6 +250,8 @@ cibmtr-smart-dev-stu3.b12x.org.
 Using AWS Route 53 ...  
 click **Create Record Set**
 
+|     |     |
+| --- | --- |
 | Name: | cibmtr-smart-dev-auth [.b12x.org.] |
 | Type: | CNAME - Canonical name |
 | Alias: | No |
@@ -272,6 +278,8 @@ Use AWS EC2 console to define ELB instance for each exposed service.
 
 (DNS CNAME:  cibmtr-smart-dev-dstu2.b12x.org)
 
+|     |     |
+| --- | --- |
 | ELB Name: | cibmtr-smart-dev-dstu2 |
 | Protocol: | HTTP |
 | Port: | 8071 |
@@ -280,6 +288,8 @@ Use AWS EC2 console to define ELB instance for each exposed service.
 
 (DNS CNAME:  cibmtr-smart-dev-stu3.b12x.org)
 
+|     |     |
+| --- | --- |
 | ELB Name: | cibmtr-smart-dev-stu3 |
 | Protocol: | HTTP |
 | Port: | 8074 |
@@ -288,6 +298,8 @@ Use AWS EC2 console to define ELB instance for each exposed service.
 
 (DNS CNAME:  cibmtr-smart-dev-sandman-api.b12x.org)
 
+|     |     |
+| --- | --- |
 | ELB Name: | cibmtr-smart-dev-sandman-api |
 | Protocol: | HTTP |
 | Port: | 12000 |
@@ -296,6 +308,8 @@ Use AWS EC2 console to define ELB instance for each exposed service.
 
 (DNS CNAME:  cibmtr-smart-dev-sandman.b12x.org)
 
+|     |     |
+| --- | --- |
 | ELB Name: | cibmtr-smart-dev-sandman |
 | Protocol: | HTTP |
 | Port: | 8080 |
@@ -304,6 +318,8 @@ Use AWS EC2 console to define ELB instance for each exposed service.
 
 (DNS CNAME:  cibmtr-smart-dev-pwm.b12x.org)
 
+|     |     |
+| --- | --- |
 | ELB Name: | cibmtr-smart-dev-pwm |
 | Protocol: | HTTP |
 | Port: | 8092 |
@@ -312,6 +328,8 @@ Use AWS EC2 console to define ELB instance for each exposed service.
 
 (DNS CNAME:  cibmtr-smart-dev-apps.b12x.org)
 
+|     |     |
+| --- | --- |
 | ELB Name:  cibmtr-smart-dev-apps |
 | Protocol:  HTTP |
 | Port:  8093 |
@@ -327,6 +345,8 @@ under _Application Load Balancer_, click **Create** button
 
 _Step 1: Configure Load Balancer_
 
+|     |     |
+| --- | --- |
 | Name: | cibmtr-smart-dev-auth |
 | Scheme: | internet-facing |
 | IP Address Type: | ipv4 |
@@ -360,10 +380,14 @@ click **Next: Configure Security Settings** button
 
 _Step 2: Configure Security Setting_
 
-_Select default certificate_  
-Certificate type:  Choose a certificate from ACM (recommended)  
-Certificate name:  \*.b12x.org (arn:aws:acm:us-east-1:682793961433:certificate/8e017c31-7fe0-4648-989d-393891f4298e)  
-Security policy:  ELBSecurityPolicy-TLS-1-1-2017-01  
+_Select default certificate_
+
+|     |     |
+| --- | --- |
+| Certificate type: | Choose a certificate from ACM (recommended) |
+| Certificate name: | \*.b12x.org (arn:aws:acm:us-east-1:682793961433:certificate/8e017c31-7fe0-4648-989d-393891f4298e) |
+| Security policy: | ELBSecurityPolicy-TLS-1-1-2017-01 |
+
 click **Next: Configure Security Groups**
 
 _Step 3: Configure Security Groups_
@@ -378,11 +402,13 @@ _Step 4: Configure Routing_
 
 _Target group_
 
-Target group:  New target group  
-Name:  cibmtr-smart-dev-auth  
-Protocol:  HTTP  
-Port:  8060  
-Target type:  instance
+|     |     |
+| --- | --- |
+| Target group: | New target group |
+| Name: | cibmtr-smart-dev-auth |
+| Protocol: | HTTP |
+| Port: | 8060 |
+| Target type: | instance |
 
 _Health checks_
 
@@ -391,12 +417,15 @@ Path:  /
 
 _Advanced health check settings_
 
-Port:  traffic port  
-Healthy threshold:  5  
-Unhealthy threshold:  2  
-Timeout:  5 seconds  
-Interval:  30 seconds  
-Success codes:  200  
+|     |     |
+| --- | --- |
+| Port: | traffic port |
+| Healthy threshold: | 5 |
+| Unhealthy threshold: | 2 |
+| Timeout: | 5 seconds |
+| Interval: | 30 seconds |
+| Success codes: | 200 |
+
 click **Next: Register Targets**
 
 _Step 5: Register Targets_  
