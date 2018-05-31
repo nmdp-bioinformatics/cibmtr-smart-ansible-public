@@ -41,6 +41,8 @@ click **Next: Add Storage**
 
 _Step 4: Add Storage_
 
+Set size (GiB) to 16.
+
 | Volume Type | Device    | Snapshot               | Size (GiB) | Volume Type               | IOPS     | Throughput (MB/s) | Delete on Termination | Encrypted     |
 | ----------- | --------- | ---------------------- | ---------- | ------------------------- | -------- | ----------------- | --------------------- | ------------- |
 | Root        | /dev/sda1 | snap-0eea1ed47e203f3b8 | 16         | General Purpose SSD (GP2) | 100/3000 | N/A               | [x]                   | Not Encrypted |
@@ -201,7 +203,7 @@ Note:  The assigned ID of cibmtr-smart-ansible-elb security group is sg-1625505e
 | --- | --- |
 | Group name: | cibmtr-smart-ansible |
 | Description: | access to (Ansible-based) standalone SMART sandbox |
-| VPC: | vpc-2b2fef4a | default-vpc |
+| VPC: | vpc-2b2fef4a \| default-vpc |
 
 _Inbound_
 
@@ -257,7 +259,7 @@ click **Create Record Set**
 | Alias: | No |
 | TTL (Seconds): | 3600 |
 | Value: | cibmtr-smart-dev-auth-560736173.us-east-1.elb.amazonaws.com |
-| Routing Policy:  Simple |
+| Routing Policy: | Simple |
 
 click **Create**
 
@@ -330,9 +332,9 @@ Use AWS EC2 console to define ELB instance for each exposed service.
 
 |     |     |
 | --- | --- |
-| ELB Name:  cibmtr-smart-dev-apps |
-| Protocol:  HTTP |
-| Port:  8093 |
+| ELB Name: | cibmtr-smart-dev-apps |
+| Protocol: | HTTP |
+| Port: | 8093 |
 
 ### ELB Setup Example
 
@@ -412,8 +414,10 @@ _Target group_
 
 _Health checks_
 
-Protocol:  HTTP  
-Path:  /
+|     |     |
+| --- | --- |
+| Protocol: | HTTP |
+| Path: | / |
 
 _Advanced health check settings_
 
