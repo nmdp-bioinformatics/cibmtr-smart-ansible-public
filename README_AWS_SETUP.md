@@ -16,23 +16,23 @@ _Step 3: Configure Instance Details_
 
 |     |     |
 | --- | --- |
-| Number of instances:           | 1                                                                 |
-| Purchasing option:             | [ ] Request spot instances                                        |
-| Network:                       | vpc-2b2fef4a \| default-vpc                                       |
-| Subnet:                        | subnet-1e6bcd46 \| dev-apps-subnet-2 \| us-east-1b                |
-| Auto-assign Public IP:         | Enable (note: this is workaround for problems accessing apt repo) |
-| IAM role:                      | None                                                              |
-| Shutdown behavior:             | Stop                                                              |
-| Enable termination protection: | [ ] Protect against accidental termination                        |
-| Monitoring:                    | [ ] Enable CloudWatch detailed monitoring                         |
-| Tenancy:                       | Shared - Run a shared hardware instance                           |
-| T2 Unlimited:                  | [ ] Enable                                                        |
+| Number of instances:           | 1                                                           |
+| Purchasing option:             | [ ] Request spot instances                                  |
+| Network:                       | vpc-2b2fef4a \| default-vpc                                 |
+| Subnet:                        | subnet-1e6bcd46 \| dev-apps-subnet-2 \| us-east-1b          |
+| Auto-assign Public IP:         | Enable (_note: workaround for problems accessing apt repo_) |
+| IAM role:                      | None                                                        |
+| Shutdown behavior:             | Stop                                                        |
+| Enable termination protection: | [ ] Protect against accidental termination                  |
+| Monitoring:                    | [ ] Enable CloudWatch detailed monitoring                   |
+| Tenancy:                       | Shared - Run a shared hardware instance                     |
+| T2 Unlimited:                  | [ ] Enable                                                  |
 
 _Network interfaces_
 
-| Device | Network Interface     | Subnet          | Primary IP  | Secondary IP addresses | IPv6 IPs  |
-| :----- | :-------------------- | :-------------- | :---------- | :--------------------- | :-------- |
-| eth0   | New network interface | subnet-1e6bcd46 | Auto-assign | -                      | -         |
+| Device | Network Interface     | Subnet          | Primary IP  | Secondary IP addresses | IPv6 IPs |
+| :----- | :-------------------- | :-------------- | :---------- | :--------------------- | :------- |
+| eth0   | New network interface | subnet-1e6bcd46 | Auto-assign | -                      | -        |
 
 _Advanced Details_  
 (none)
