@@ -14,6 +14,7 @@ click **Next: Configure Instance Details**
 
 _Step 3: Configure Instance Details_
 
+|     |     |
 | --- | --- |
 | Number of instances: | 1 |
 | Purchasing option: | [ ] Request spot instances |
