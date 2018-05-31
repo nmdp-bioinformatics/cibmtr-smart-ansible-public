@@ -1,16 +1,19 @@
 ## EC2 Instance
 
-EC2 Console  
-click **Launch Instance**
+Open EC2 Console and click **Launch Instance**
 
-_Step 1: Choose an Amazon Machine Image (AMI)_  
+_Step 1: Choose an Amazon Machine Image (AMI)_
+
 click **Select** button for **Ubuntu Server 16.04 LTS (HVM), SSD Volume Type**
 
-_Step 2: Choose an Instance Type_  
-choose type:  t2.large  
+_Step 2: Choose an Instance Type_
+
+choose type:  t2.large
+
 click **Next: Configure Instance Details**
 
-_Step 3: Configure Instance Details_  
+_Step 3: Configure Instance Details_
+
 Number of instances:  1  
 Purchasing option: [ ] Request spot instances  
 Network:  vpc-2b2fef4a | default-vpc  
@@ -25,9 +28,9 @@ T2 Unlimited:  [ ] Enable
 
 _Network interfaces_
 
-| Device | Network Interface | Subnet | Primary IP | Secondary IP addresses | IPv6 IPs  |
-| --- | --- | --- | --- | --- | --- |
-| eth0 | New network interface | subnet-1e6bcd46 | Auto-assign | - | - |
+| Device | Network Interface     | Subnet          | Primary IP  | Secondary IP addresses | IPv6 IPs  |
+| ------ | --------------------- | --------------- | ----------- | ---------------------- | --------- |
+| eth0   | New network interface | subnet-1e6bcd46 | Auto-assign | -                      | -         |
 
 _Advanced Details_  
 (none)
@@ -44,30 +47,34 @@ click **Next: Add Tags**
 
 _Step 5: Add Tags_
 
-| Key | Value | Instances | Volumes |
-| --- | --- | --- | --- |
-| Name | cibmtr-smart-dev | [x] | [x] |
-| Purpose | cibmtr:smart-sandbox | [x] | [x] |
-| Product | EC2 | [x] | [x] |
-| Project Name | AGNIS on FHIR | [x] | [x] |
-| Project Charge Number | BC-N3Y-2D11-00-AGNIS | [x] | [x] |
-| Environment | prod | [x] | [x] |
+| Key                   | Value                | Instances | Volumes |
+| --------------------- | -------------------- | --------- | ------- |
+| Name                  | cibmtr-smart-dev     | [x]       | [x]     |
+| Purpose               | cibmtr:smart-sandbox | [x]       | [x]     |
+| Product               | EC2                  | [x]       | [x]     |
+| Project Name          | AGNIS on FHIR        | [x]       | [x]     |
+| Project Charge Number | BC-N3Y-2D11-00-AGNIS | [x]       | [x]     |
+| Environment           | prod                 | [x]       | [x]     |
 
 click **Next: Configure Security Group**
 
-_Step 6: Configure Security Group_  
+_Step 6: Configure Security Group_
+
 Assign a security group:  Select an existing security group  
-select default-ssh-nmdp-aws and cibmtr-smart-ansible  
+within list, select default-ssh-nmdp-aws and cibmtr-smart-ansible
+
 click **Review and Launch**
 
-_Step 7: Review Instance Launch_  
+_Step 7: Review Instance Launch_
+
 click **Launch**
 
 _Select an existing key pair or create a new key pair_  
 Choose an existing key pair  
 jschneid_nmdp  
 [x] I acknowledge that I have access to the selected private key file (jschneid_nmdp.pem), and
-that without this file, I won't be able to log into my instance.  
+that without this file, I won't be able to log into my instance.
+
 click **Launch Instances**
 
 
@@ -158,30 +165,30 @@ VPC:  vpc-2b2fef4a | default-vpc
 
 _Inbound_
 
-| Type | Protocol | Port Range | Source | Description |
-| --- | --- | --- | --- | --- |
-| HTTPS | TCP | 443 | Custom | 0.0.0.0/0 |
+| Type  | Protocol | Port Range | Source | Description |
+| ----- | -------- | ---------- | ------ | ----------- |
+| HTTPS | TCP      | 443        | Custom | 0.0.0.0/0   |
 
 _Outbound_  
 
-| Type | Protocol | Port Range | Destination | Description |
-| --- | --- | --- | --- | --- |
-| Custom TCP Rule | TCP | 8060 | 0.0.0.0/0 | Auth Server |
-| Custom TCP Rule | TCP | 8070 - 8099 | 0.0.0.0/0 | Sandbox Manager & SMART Apps |
-| Custom TCP Rule | TCP | 12000 | 0.0.0.0/0 | Sandbox Manager API |
+| Type            | Protocol | Port Range  | Destination | Description                  |
+| --------------- | -------- | ----------- | ----------- | ---------------------------- |
+| Custom TCP Rule | TCP      | 8060        | 0.0.0.0/0   | Auth Server                  |
+| Custom TCP Rule | TCP      | 8070 - 8099 | 0.0.0.0/0   | Sandbox Manager & SMART Apps |
+| Custom TCP Rule | TCP      | 12000       | 0.0.0.0/0   | Sandbox Manager API          |
 
 _Tags_  
 
-| Key | Value |
-| --- | --- |
-| Name | cibmtr-smart-ansible-elb |
-| Purpose | cibmtr:smart-sandbox |
-| Product | EC2 |
-| Project Name | AGNIS on FHIR |
-| Project Charge Number | BC-N3Y-2D11-00-AGNIS |
-| Environment | prod |
+| Key                   | Value                    |
+| --------------------- | ------------------------ |
+| Name                  | cibmtr-smart-ansible-elb |
+| Purpose               | cibmtr:smart-sandbox     |
+| Product               | EC2                      |
+| Project Name          | AGNIS on FHIR            |
+| Project Charge Number | BC-N3Y-2D11-00-AGNIS     |
+| Environment           | prod                     |
 
-Note:  The assigned ID of cibmtr-smart-ansible-elb security group is sg-1625505e.
+Note:  The assigned ID of cibmtr-smart-ansible-elb security group is sg-1625505e (referenced below).
 
 ### cibmtr-smart-ansible
 
@@ -191,30 +198,30 @@ VPC:  vpc-2b2fef4a | default-vpc
 
 _Inbound_
 
-| Type | Protocol | Port Range | Source | Description |
-| --- | --- | --- | --- | --- |
-| SSH | TCP | 22 | 192.149.74.10/32 | SSH from NMDP |
-| SSH | TCP | 22 | 198.175.249.8/32 | SSH from NMDP |
-| Custom TCP Rule | TCP | 9060 | sg-1625505e | Auth Server |
-| Custom TCP Rule | TCP | 9070 - 9099 | sg-1625505e | Sandbox Manager & SMART Apps |
-| Custom TCP Rule | TCP | 12000 | sg-1625505e | Sandbox Manager API |
+| Type            | Protocol | Port Range  | Source           | Description                  |
+| --------------- | -------- | ----------- | ---------------- | ---------------------------- |
+| SSH             | TCP      | 22          | 192.149.74.10/32 | SSH from NMDP                |
+| SSH             | TCP      | 22          | 198.175.249.8/32 | SSH from NMDP                |
+| Custom TCP Rule | TCP      | 9060        | sg-1625505e      | Auth Server                  |
+| Custom TCP Rule | TCP      | 9070 - 9099 | sg-1625505e      | Sandbox Manager & SMART Apps |
+| Custom TCP Rule | TCP      | 12000       | sg-1625505e      | Sandbox Manager API          |
 
 _Outbound_  
 
-| Type | Protocol | Port Range | Destination | Description |
-| --- | --- | --- | --- | --- |
-| All traffic | All | 0 - 65535 | Custom | 0.0.0.0/0 |
+| Type        | Protocol | Port Range | Destination | Description |
+| ----------- | -------- | ---------- | ----------- | ----------- |
+| All traffic | All      | 0 - 65535  | Custom      | 0.0.0.0/0   |
 
 _Tags_
 
-| Key | Value |
-| --- | --- |
-| Name | cibmtr-smart-ansible |
-| Purpose | cibmtr:smart-sandbox |
-| Product | EC2 |
-| Project Name | AGNIS on FHIR |
+| Key                   | Value                |
+| --------------------- | -------------------- |
+| Name                  | cibmtr-smart-ansible |
+| Purpose               | cibmtr:smart-sandbox |
+| Product               | EC2                  |
+| Project Name          | AGNIS on FHIR        |
 | Project Charge Number | BC-N3Y-2D11-00-AGNIS |
-| Environment | prod |
+| Environment           | prod                 |
 
 
 ## DNS Names
@@ -306,7 +313,8 @@ click **Load Balancers** link
 click **Create Load Balancers** button  
 under _Application Load Balancer_, click **Create** button
 
-_Step 1: Configure Load Balancer_  
+_Step 1: Configure Load Balancer_
+
 Name:  cibmtr-smart-dev-auth  
 Scheme:  internet-facing  
 IP Address Type:  ipv4
@@ -314,26 +322,26 @@ IP Address Type:  ipv4
 _Listeners_  
 
 | Load Balancer Protocol | Load Balancer Port |
-| --- | --- |
-| HTTPS | 443 |
+| ---------------------- | ------------------ |
+| HTTPS                  | 443                |
 
 _Availability Zones_  
 VPC: vpc-2b2fef4a (10.223.0.0/16) | default-vpc
 
-| Availability Zone | Subnet ID | Subnet IPv4 CIDR | Name |
-| --- | --- | --- | --- |
-| us-east-1a | subnet-31911e47 | 10.223.13.0/24 | dev-apps-subnet-1 |
-| us-east-1b | subnet-1e6bcd46 | 10.223.14.0/24 | dev-apps-subnet-2 |
+| Availability Zone | Subnet ID       | Subnet IPv4 CIDR | Name              |
+| ----------------- | --------------- | ---------------- | ----------------- |
+| us-east-1a        | subnet-31911e47 | 10.223.13.0/24   | dev-apps-subnet-1 |
+| us-east-1b        | subnet-1e6bcd46 | 10.223.14.0/24   | dev-apps-subnet-2 |
 
 _Tags_  
 
-| Key | Value |
-| --- | --- |
-| Purpose | cibmtr:smart-sandbox |
-| Product | EC2 |
-| Project Name | AGNIS on FHIR |
+| Key                   | Value                |
+| --------------------- | -------------------- |
+| Purpose               | cibmtr:smart-sandbox |
+| Product               | EC2                  |
+| Project Name          | AGNIS on FHIR        |
 | Project Charge Number | BC-N3Y-2D11-00-AGNIS |
-| Environment | prod |
+| Environment           | prod                 |
 
 click **Next: Configure Security Settings** button
 
@@ -346,25 +354,29 @@ click **Next: Configure Security Groups**
 
 _Step 3: Configure Security Groups_
 
-| Security | Name | Description |
-| --- | --- | --- |
+| Security    | Name                     | Description                                                         |
+| ----------- | ------------------------ | ------------------------------------------------------------------- |
 | sg-1625505e | cibmtr-smart-ansible-elb | load balancer for (Ansible-based) standalone SMART sandbox services |
 
 click **Next: Configure Routing**
 
-_Step 4: Configure Routing_  
-_Target group_  
+_Step 4: Configure Routing_
+
+_Target group_
+
 Target group:  New target group  
 Name:  cibmtr-smart-dev-auth  
 Protocol:  HTTP  
 Port:  8060  
 Target type:  instance
 
-_Health checks_  
+_Health checks_
+
 Protocol:  HTTP  
 Path:  /
 
-_Advanced health check settings_  
+_Advanced health check settings_
+
 Port:  traffic port  
 Healthy threshold:  5  
 Unhealthy threshold:  2  
@@ -378,8 +390,8 @@ _Step 5: Register Targets_
 _Registered targets_  
 (select instance and click **Add to registered**)
 
-| Instance | Name | Port | State | Security groups | Zone |
-| --- | --- | --- | --- | --- | --- |
+| Instance            | Name             | Port | State   | Security groups                                | Zone       |
+| ------------------- | ---------------- | ---- | ------- | ---------------------------------------------- | ---------- |
 | i-0bb517ecbd4c32e62 | cibmtr-smart-dev | 8060 | running | default-ssh-nmdp-aws, cibmtr-smart-sandbox-... | us-east-1b |
 
 click **Next: Review**
