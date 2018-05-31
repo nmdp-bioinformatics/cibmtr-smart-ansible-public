@@ -4,7 +4,7 @@ EC2 Console
 click **Launch Instance**
 
 _Step 1: Choose an Amazon Machine Image (AMI)_  
-click **Select** button for **Ubuntu Server 16.04 LTS (HVM), SSD Volume Type** - ami-43a15f3e
+click **Select** button for **Ubuntu Server 16.04 LTS (HVM), SSD Volume Type**
 
 _Step 2: Choose an Instance Type_  
 choose type:  t2.large  
@@ -23,26 +23,36 @@ Monitoring:  [ ] Enable CloudWatch detailed monitoring
 Tenancy:  Shared - Run a shared hardware instance  
 T2 Unlimited:  [ ] Enable
 
-_Network interfaces_  
-_Device_ / _Network Interface_ / _Subnet_ / _Primary IP_ / _Secondary IP addresses_ / _IPv6 IPs_  
-eth0 / New network interface / subnet-1e6bcd46 / Auto-assign / - / -  
+_Network interfaces_
+
+| Device | Network Interface | Subnet | Primary IP | Secondary IP addresses | IPv6 IPs  |
+| --- | --- | --- | --- | --- | --- |
+| eth0 | New network interface | subnet-1e6bcd46 | Auto-assign | - | - |
+
 _Advanced Details_  
-(none)  
+(none)
+
 click **Next: Add Storage**
 
-_Step 4: Add Storage_  
-_Volume Type_ / _Device_ / _Snapshot_ / _Size (GiB)_ / _Volume Type_ / _IOPS_ / _Throughput (MB/s)_ / _Delete on Termination_ / _Encrypted_  
-Root / /dev/sda1 / snap-0eea1ed47e203f3b8 / 16 / General Purpose SSD (GP2) / 100/3000 / N/A / [x] / Not Encrypted  
+_Step 4: Add Storage_
+
+| Volume Type | Device    | Snapshot               | Size (GiB) | Volume Type               | IOPS     | Throughput (MB/s) | Delete on Termination | Encrypted     |
+| ----------- | --------- | ---------------------- | ---------- | ------------------------- | -------- | ----------------- | --------------------- | ------------- |
+| Root        | /dev/sda1 | snap-0eea1ed47e203f3b8 | 16         | General Purpose SSD (GP2) | 100/3000 | N/A               | [x]                   | Not Encrypted |
+
 click **Next: Add Tags**
 
-_Step 5: Add Tags_  
-Key / Value / Instances / Volumes  
-Name / cibmtr-smart-dev / [x] / [x]  
-Purpose / cibmtr:smart-sandbox / [x] / [x]  
-Product / EC2 / [x] / [x]  
-Project Name / AGNIS on FHIR / [x] / [x]  
-Project Charge Number / BC-N3Y-2D11-00-AGNIS / [x] / [x]  
-Environment / prod / [x] / [x]  
+_Step 5: Add Tags_
+
+| Key | Value | Instances | Volumes |
+| --- | --- | --- | --- |
+| Name | cibmtr-smart-dev | [x] | [x] |
+| Purpose | cibmtr:smart-sandbox | [x] | [x] |
+| Product | EC2 | [x] | [x] |
+| Project Name | AGNIS on FHIR | [x] | [x] |
+| Project Charge Number | BC-N3Y-2D11-00-AGNIS | [x] | [x] |
+| Environment | prod | [x] | [x] |
+
 click **Next: Configure Security Group**
 
 _Step 6: Configure Security Group_  
@@ -146,24 +156,30 @@ Group name:  cibmtr-smart-ansible-elb
 Description:  load balancer for (Ansible-based) standalone SMART sandbox  
 VPC:  vpc-2b2fef4a | default-vpc
 
-_Inbound_  
-_Type_ / _Protocol_ / _Port Range_ / _Source_ / _Description_  
-HTTPS / TCP / 443 / Custom / 0.0.0.0/0 /
+_Inbound_
+
+| Type | Protocol | Port Range | Source | Description |
+| --- | --- | --- | --- | --- |
+| HTTPS | TCP | 443 | Custom | 0.0.0.0/0 |
 
 _Outbound_  
-_Type_ / _Protocol_ / _Port Range_ / _Destination_ / _Description_  
-Custom TCP Rule / TCP / 8060 / 0.0.0.0/0 / Auth Server  
-Custom TCP Rule / TCP / 8070 - 8099 / 0.0.0.0/0 / Sandbox Manager & SMART Apps  
-Custom TCP Rule / TCP / 12000 / 0.0.0.0/0 / Sandbox Manager API
+
+| Type | Protocol | Port Range | Destination | Description |
+| --- | --- | --- | --- | --- |
+| Custom TCP Rule | TCP | 8060 | 0.0.0.0/0 | Auth Server |
+| Custom TCP Rule | TCP | 8070 - 8099 | 0.0.0.0/0 | Sandbox Manager & SMART Apps |
+| Custom TCP Rule | TCP | 12000 | 0.0.0.0/0 | Sandbox Manager API |
 
 _Tags_  
-_Key_ / _Value_  
-Name / cibmtr-smart-ansible-elb  
-Purpose / cibmtr:smart-sandbox  
-Product / EC2  
-Project Name / AGNIS on FHIR  
-Project Charge Number / BC-N3Y-2D11-00-AGNIS  
-Environment / prod
+
+| Key | Value |
+| --- | --- |
+| Name | cibmtr-smart-ansible-elb |
+| Purpose | cibmtr:smart-sandbox |
+| Product | EC2 |
+| Project Name | AGNIS on FHIR |
+| Project Charge Number | BC-N3Y-2D11-00-AGNIS |
+| Environment | prod |
 
 Note:  The assigned ID of cibmtr-smart-ansible-elb security group is sg-1625505e.
 
@@ -173,26 +189,32 @@ Group name:  cibmtr-smart-ansible
 Description:  access to (Ansible-based) standalone SMART sandbox  
 VPC:  vpc-2b2fef4a | default-vpc
 
-_Inbound_  
-_Type_ / _Protocol_ / _Port Range_ / _Source_ / _Description_  
-SSH / TCP / 22 / 192.149.74.10/32 / SSH from NMDP  
-SSH / TCP / 22 / 198.175.249.8/32 / SSH from NMDP  
-Custom TCP Rule / TCP / 9060 / sg-1625505e / Auth Server  
-Custom TCP Rule / TCP / 9070 - 9099 / sg-1625505e / Sandbox Manager & SMART Apps  
-Custom TCP Rule / TCP / 12000 / sg-1625505e / Sandbox Manager API
+_Inbound_
+
+| Type | Protocol | Port Range | Source | Description |
+| --- | --- | --- | --- | --- |
+| SSH | TCP | 22 | 192.149.74.10/32 | SSH from NMDP |
+| SSH | TCP | 22 | 198.175.249.8/32 | SSH from NMDP |
+| Custom TCP Rule | TCP | 9060 | sg-1625505e | Auth Server |
+| Custom TCP Rule | TCP | 9070 - 9099 | sg-1625505e | Sandbox Manager & SMART Apps |
+| Custom TCP Rule | TCP | 12000 | sg-1625505e | Sandbox Manager API |
 
 _Outbound_  
-_Type_ / _Protocol_ / _Port Range_ / _Destination_ / _Description_  
-All traffic / All / 0 - 65535 / Custom / 0.0.0.0/0 /
 
-_Tags_  
-_Key_ / _Value_  
-Name / cibmtr-smart-ansible  
-Purpose / cibmtr:smart-sandbox  
-Product / EC2  
-Project Name / AGNIS on FHIR  
-Project Charge Number / BC-N3Y-2D11-00-AGNIS  
-Environment / prod
+| Type | Protocol | Port Range | Destination | Description |
+| --- | --- | --- | --- | --- |
+| All traffic | All | 0 - 65535 | Custom | 0.0.0.0/0 |
+
+_Tags_
+
+| Key | Value |
+| --- | --- |
+| Name | cibmtr-smart-ansible |
+| Purpose | cibmtr:smart-sandbox |
+| Product | EC2 |
+| Project Name | AGNIS on FHIR |
+| Project Charge Number | BC-N3Y-2D11-00-AGNIS |
+| Environment | prod |
 
 
 ## DNS Names
@@ -290,22 +312,28 @@ Scheme:  internet-facing
 IP Address Type:  ipv4
 
 _Listeners_  
-Load Balancer Protocol / Load Balancer Port  
-HTTPS / 443
+
+| Load Balancer Protocol | Load Balancer Port |
+| --- | --- |
+| HTTPS | 443 |
 
 _Availability Zones_  
-VPC: vpc-2b2fef4a (10.223.0.0/16) | default-vpc  
-_Availability Zone_ / _Subnet ID_ / _Subnet IPv4 CIDR_ / _Name_  
-us-east-1a / subnet-31911e47 / 10.223.13.0/24 / dev-apps-subnet-1  
-us-east-1b / subnet-1e6bcd46 / 10.223.14.0/24 / dev-apps-subnet-2
+VPC: vpc-2b2fef4a (10.223.0.0/16) | default-vpc
+
+| Availability Zone | Subnet ID | Subnet IPv4 CIDR | Name |
+| --- | --- | --- | --- |
+| us-east-1a | subnet-31911e47 | 10.223.13.0/24 | dev-apps-subnet-1 |
+| us-east-1b | subnet-1e6bcd46 | 10.223.14.0/24 | dev-apps-subnet-2 |
 
 _Tags_  
-_Key_ / _Value_  
-Purpose / cibmtr:smart-sandbox  
-Product / EC2  
-Project Name / AGNIS on FHIR  
-Project Charge Number / BC-N3Y-2D11-00-AGNIS  
-Environment / prod
+
+| Key | Value |
+| --- | --- |
+| Purpose | cibmtr:smart-sandbox |
+| Product | EC2 |
+| Project Name | AGNIS on FHIR |
+| Project Charge Number | BC-N3Y-2D11-00-AGNIS |
+| Environment | prod |
 
 click **Next: Configure Security Settings** button
 
@@ -316,9 +344,12 @@ Certificate name:  \*.b12x.org (arn:aws:acm:us-east-1:682793961433:certificate/8
 Security policy:  ELBSecurityPolicy-TLS-1-1-2017-01  
 click **Next: Configure Security Groups**
 
-_Step 3: Configure Security Groups_  
-_Security_ / _Name_ / _Description_  
-sg-1625505e / cibmtr-smart-ansible-elb / load balancer for (Ansible-based) standalone SMART sandbox services  
+_Step 3: Configure Security Groups_
+
+| Security | Name | Description |
+| --- | --- | --- |
+| sg-1625505e | cibmtr-smart-ansible-elb | load balancer for (Ansible-based) standalone SMART sandbox services |
+
 click **Next: Configure Routing**
 
 _Step 4: Configure Routing_  
@@ -343,10 +374,14 @@ Success codes:  200
 click **Next: Register Targets**
 
 _Step 5: Register Targets_  
+
 _Registered targets_  
-_Instance_ / _Name_ / _Port_ / _State_ / _Security groups_ / _Zone_  
-i-0bb517ecbd4c32e62 / cibmtr-smart-dev / 8060 / running / default-ssh-nmdp-aws, cibmtr-smart-sandbox-... / us-east-1b  
-(select instance and click **Add to registered**)  
+(select instance and click **Add to registered**)
+
+| Instance | Name | Port | State | Security groups | Zone |
+| --- | --- | --- | --- | --- | --- |
+| i-0bb517ecbd4c32e62 | cibmtr-smart-dev | 8060 | running | default-ssh-nmdp-aws, cibmtr-smart-sandbox-... | us-east-1b |
+
 click **Next: Review**
 
 _Step 6: Review_  
