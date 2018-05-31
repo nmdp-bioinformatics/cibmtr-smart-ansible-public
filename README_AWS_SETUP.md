@@ -16,22 +16,22 @@ _Step 3: Configure Instance Details_
 
 |     |     |
 | --- | --- |
-| Number of instances: | 1 |
-| Purchasing option: | [ ] Request spot instances |
-| Network: | vpc-2b2fef4a \| default-vpc |
-| Subnet: | subnet-1e6bcd46 \| dev-apps-subnet-2 \| us-east-1b |
-| Auto-assign Public IP: | Enable (note: this is workaround for problems accessing apt repo) |
-| IAM role: | None |
-| Shutdown behavior: | Stop |
-| Enable termination protection: | [ ] Protect against accidental termination |
-| Monitoring: | [ ] Enable CloudWatch detailed monitoring |
-| Tenancy: | Shared - Run a shared hardware instance |
-| T2 Unlimited: | [ ] Enable |
+| Number of instances:           | 1                                                                 |
+| Purchasing option:             | [ ] Request spot instances                                        |
+| Network:                       | vpc-2b2fef4a \| default-vpc                                       |
+| Subnet:                        | subnet-1e6bcd46 \| dev-apps-subnet-2 \| us-east-1b                |
+| Auto-assign Public IP:         | Enable (note: this is workaround for problems accessing apt repo) |
+| IAM role:                      | None                                                              |
+| Shutdown behavior:             | Stop                                                              |
+| Enable termination protection: | [ ] Protect against accidental termination                        |
+| Monitoring:                    | [ ] Enable CloudWatch detailed monitoring                         |
+| Tenancy:                       | Shared - Run a shared hardware instance                           |
+| T2 Unlimited:                  | [ ] Enable                                                        |
 
 _Network interfaces_
 
 | Device | Network Interface     | Subnet          | Primary IP  | Secondary IP addresses | IPv6 IPs  |
-| ------ | --------------------- | --------------- | ----------- | ---------------------- | --------- |
+| :----- | :-------------------- | :-------------- | :---------- | :--------------------- | :-------- |
 | eth0   | New network interface | subnet-1e6bcd46 | Auto-assign | -                      | -         |
 
 _Advanced Details_  
@@ -44,7 +44,7 @@ _Step 4: Add Storage_
 Set size (GiB) to 16.
 
 | Volume Type | Device    | Snapshot               | Size (GiB) | Volume Type               | IOPS     | Throughput (MB/s) | Delete on Termination | Encrypted     |
-| ----------- | --------- | ---------------------- | ---------- | ------------------------- | -------- | ----------------- | --------------------- | ------------- |
+| :---------- | :-------- | :--------------------- | :--------- | :------------------------ | :------- | :---------------- | :-------------------- | :------------ |
 | Root        | /dev/sda1 | snap-0eea1ed47e203f3b8 | 16         | General Purpose SSD (GP2) | 100/3000 | N/A               | [x]                   | Not Encrypted |
 
 click **Next: Add Tags**
@@ -52,7 +52,7 @@ click **Next: Add Tags**
 _Step 5: Add Tags_
 
 | Key                   | Value                | Instances | Volumes |
-| --------------------- | -------------------- | --------- | ------- |
+| :-------------------- | :------------------- | :-------- | :------ |
 | Name                  | cibmtr-smart-dev     | [x]       | [x]     |
 | Purpose               | cibmtr:smart-sandbox | [x]       | [x]     |
 | Product               | EC2                  | [x]       | [x]     |
@@ -65,7 +65,7 @@ click **Next: Configure Security Group**
 _Step 6: Configure Security Group_
 
 Assign a security group:  Select an existing security group  
-within list, select default-ssh-nmdp-aws and cibmtr-smart-ansible
+within list, select _default-ssh-nmdp-aws_ and _cibmtr-smart-ansible_
 
 click **Review and Launch**
 
@@ -75,10 +75,11 @@ click **Launch**
 
 _Select an existing key pair or create a new key pair_
 
-Choose an existing key pair  
-jschneid_nmdp  
-[x] I acknowledge that I have access to the selected private key file (jschneid_nmdp.pem), and
-that without this file, I won't be able to log into my instance.
+|     |
+| --- |
+| Choose an existing key pair |
+| jschneid_nmdp               |
+| [x] I acknowledge that I have access to the selected private key file (jschneid_nmdp.pem), and that without this file, I won't be able to log into my instance. |
 
 click **Launch Instances**
 
@@ -166,20 +167,20 @@ ansible-playbook site.yml -i "localhost," -c local \
 
 |     |     |
 | --- | --- |
-| Group name: | cibmtr-smart-ansible-elb |
+| Group name:  | cibmtr-smart-ansible-elb                                   |
 | Description: | load balancer for (Ansible-based) standalone SMART sandbox |
-| VPC: | vpc-2b2fef4a \| default-vpc |
+| VPC:         | vpc-2b2fef4a \| default-vpc                                |
 
 _Inbound_
 
 | Type  | Protocol | Port Range | Source | Description |
-| ----- | -------- | ---------- | ------ | ----------- |
+| :---- | :------- | :--------- | :----- | :---------- |
 | HTTPS | TCP      | 443        | Custom | 0.0.0.0/0   |
 
 _Outbound_  
 
 | Type            | Protocol | Port Range  | Destination | Description                  |
-| --------------- | -------- | ----------- | ----------- | ---------------------------- |
+| :-------------- | :------- | :---------- | :---------- | :--------------------------- |
 | Custom TCP Rule | TCP      | 8060        | 0.0.0.0/0   | Auth Server                  |
 | Custom TCP Rule | TCP      | 8070 - 8099 | 0.0.0.0/0   | Sandbox Manager & SMART Apps |
 | Custom TCP Rule | TCP      | 12000       | 0.0.0.0/0   | Sandbox Manager API          |
@@ -187,7 +188,7 @@ _Outbound_
 _Tags_  
 
 | Key                   | Value                    |
-| --------------------- | ------------------------ |
+| :-------------------- | :----------------------- |
 | Name                  | cibmtr-smart-ansible-elb |
 | Purpose               | cibmtr:smart-sandbox     |
 | Product               | EC2                      |
@@ -201,14 +202,14 @@ Note:  The assigned ID of cibmtr-smart-ansible-elb security group is sg-1625505e
 
 |     |     |
 | --- | --- |
-| Group name: | cibmtr-smart-ansible |
+| Group name:  | cibmtr-smart-ansible                               |
 | Description: | access to (Ansible-based) standalone SMART sandbox |
-| VPC: | vpc-2b2fef4a \| default-vpc |
+| VPC:         | vpc-2b2fef4a \| default-vpc                        |
 
 _Inbound_
 
 | Type            | Protocol | Port Range  | Source           | Description                  |
-| --------------- | -------- | ----------- | ---------------- | ---------------------------- |
+| :-------------- | :------- | :---------- | :--------------- | :--------------------------- |
 | SSH             | TCP      | 22          | 192.149.74.10/32 | SSH from NMDP                |
 | SSH             | TCP      | 22          | 198.175.249.8/32 | SSH from NMDP                |
 | Custom TCP Rule | TCP      | 9060        | sg-1625505e      | Auth Server                  |
@@ -218,13 +219,13 @@ _Inbound_
 _Outbound_  
 
 | Type        | Protocol | Port Range | Destination | Description |
-| ----------- | -------- | ---------- | ----------- | ----------- |
+| :---------- | :------- | :--------- | :---------- | :---------- |
 | All traffic | All      | 0 - 65535  | Custom      | 0.0.0.0/0   |
 
 _Tags_
 
 | Key                   | Value                |
-| --------------------- | -------------------- |
+| :-------------------- | :------------------- |
 | Name                  | cibmtr-smart-ansible |
 | Purpose               | cibmtr:smart-sandbox |
 | Product               | EC2                  |
@@ -254,12 +255,12 @@ click **Create Record Set**
 
 |     |     |
 | --- | --- |
-| Name: | cibmtr-smart-dev-auth [.b12x.org.] |
-| Type: | CNAME - Canonical name |
-| Alias: | No |
-| TTL (Seconds): | 3600 |
-| Value: | cibmtr-smart-dev-auth-560736173.us-east-1.elb.amazonaws.com |
-| Routing Policy: | Simple |
+| Name:           | cibmtr-smart-dev-auth [.b12x.org.]                          |
+| Type:           | CNAME - Canonical name                                      |
+| Alias:          | No                                                          |
+| TTL (Seconds):  | 3600                                                        |
+| Value:          | cibmtr-smart-dev-auth-560736173.us-east-1.elb.amazonaws.com |
+| Routing Policy: | Simple                                                      |
 
 click **Create**
 
@@ -272,9 +273,11 @@ Use AWS EC2 console to define ELB instance for each exposed service.
 
 (DNS CNAME:  cibmtr-smart-dev-auth.b12x.org)
 
+|     |     |
+| --- | --- |
 | ELB Name: | cibmtr-smart-dev-auth |
-| Protocol: | HTTP |
-| Port: | 8060 |
+| Protocol: | HTTP                  |
+| Port:     | 8060                  |
 
 ### DSTU2 API Server
 
@@ -283,8 +286,8 @@ Use AWS EC2 console to define ELB instance for each exposed service.
 |     |     |
 | --- | --- |
 | ELB Name: | cibmtr-smart-dev-dstu2 |
-| Protocol: | HTTP |
-| Port: | 8071 |
+| Protocol: | HTTP                   |
+| Port:     | 8071                   |
 
 ### STU3 API Server
 
@@ -293,8 +296,8 @@ Use AWS EC2 console to define ELB instance for each exposed service.
 |     |     |
 | --- | --- |
 | ELB Name: | cibmtr-smart-dev-stu3 |
-| Protocol: | HTTP |
-| Port: | 8074 |
+| Protocol: | HTTP                  |
+| Port:     | 8074                  |
 
 ### Sandbox Manager API Server
 
@@ -303,8 +306,8 @@ Use AWS EC2 console to define ELB instance for each exposed service.
 |     |     |
 | --- | --- |
 | ELB Name: | cibmtr-smart-dev-sandman-api |
-| Protocol: | HTTP |
-| Port: | 12000 |
+| Protocol: | HTTP                         |
+| Port:     | 12000                        |
 
 ### Sandbox Manager
 
@@ -313,8 +316,8 @@ Use AWS EC2 console to define ELB instance for each exposed service.
 |     |     |
 | --- | --- |
 | ELB Name: | cibmtr-smart-dev-sandman |
-| Protocol: | HTTP |
-| Port: | 8080 |
+| Protocol: | HTTP                     |
+| Port:     | 8080                     |
 
 ### Password Management App
 
@@ -323,8 +326,8 @@ Use AWS EC2 console to define ELB instance for each exposed service.
 |     |     |
 | --- | --- |
 | ELB Name: | cibmtr-smart-dev-pwm |
-| Protocol: | HTTP |
-| Port: | 8092 |
+| Protocol: | HTTP                 |
+| Port:     | 8092                 |
 
 ### SMART Apps
 
@@ -333,8 +336,8 @@ Use AWS EC2 console to define ELB instance for each exposed service.
 |     |     |
 | --- | --- |
 | ELB Name: | cibmtr-smart-dev-apps |
-| Protocol: | HTTP |
-| Port: | 8093 |
+| Protocol: | HTTP                  |
+| Port:     | 8093                  |
 
 ### ELB Setup Example
 
@@ -349,14 +352,14 @@ _Step 1: Configure Load Balancer_
 
 |     |     |
 | --- | --- |
-| Name: | cibmtr-smart-dev-auth |
-| Scheme: | internet-facing |
-| IP Address Type: | ipv4 |
+| Name:            | cibmtr-smart-dev-auth |
+| Scheme:          | internet-facing       |
+| IP Address Type: | ipv4                  |
 
 _Listeners_  
 
 | Load Balancer Protocol | Load Balancer Port |
-| ---------------------- | ------------------ |
+| :--------------------- | :----------------- |
 | HTTPS                  | 443                |
 
 _Availability Zones_
@@ -364,14 +367,14 @@ _Availability Zones_
 VPC: vpc-2b2fef4a (10.223.0.0/16) | default-vpc
 
 | Availability Zone | Subnet ID       | Subnet IPv4 CIDR | Name              |
-| ----------------- | --------------- | ---------------- | ----------------- |
+| :---------------- | :-------------- | :--------------- | :---------------- |
 | us-east-1a        | subnet-31911e47 | 10.223.13.0/24   | dev-apps-subnet-1 |
 | us-east-1b        | subnet-1e6bcd46 | 10.223.14.0/24   | dev-apps-subnet-2 |
 
 _Tags_  
 
 | Key                   | Value                |
-| --------------------- | -------------------- |
+| :-------------------- | :------------------- |
 | Purpose               | cibmtr:smart-sandbox |
 | Product               | EC2                  |
 | Project Name          | AGNIS on FHIR        |
@@ -388,14 +391,14 @@ _Select default certificate_
 | --- | --- |
 | Certificate type: | Choose a certificate from ACM (recommended) |
 | Certificate name: | \*.b12x.org (arn:aws:acm:us-east-1:682793961433:certificate/8e017c31-7fe0-4648-989d-393891f4298e) |
-| Security policy: | ELBSecurityPolicy-TLS-1-1-2017-01 |
+| Security policy:  | ELBSecurityPolicy-TLS-1-1-2017-01 |
 
 click **Next: Configure Security Groups**
 
 _Step 3: Configure Security Groups_
 
 | Security    | Name                     | Description                                                         |
-| ----------- | ------------------------ | ------------------------------------------------------------------- |
+| :---------- | :----------------------- | :------------------------------------------------------------------ |
 | sg-1625505e | cibmtr-smart-ansible-elb | load balancer for (Ansible-based) standalone SMART sandbox services |
 
 click **Next: Configure Routing**
@@ -406,29 +409,29 @@ _Target group_
 
 |     |     |
 | --- | --- |
-| Target group: | New target group |
-| Name: | cibmtr-smart-dev-auth |
-| Protocol: | HTTP |
-| Port: | 8060 |
-| Target type: | instance |
+| Target group: | New target group      |
+| Name:         | cibmtr-smart-dev-auth |
+| Protocol:     | HTTP                  |
+| Port:         | 8060                  |
+| Target type:  | instance              |
 
 _Health checks_
 
 |     |     |
 | --- | --- |
 | Protocol: | HTTP |
-| Path: | / |
+| Path:     | /    |
 
 _Advanced health check settings_
 
 |     |     |
 | --- | --- |
-| Port: | traffic port |
-| Healthy threshold: | 5 |
-| Unhealthy threshold: | 2 |
-| Timeout: | 5 seconds |
-| Interval: | 30 seconds |
-| Success codes: | 200 |
+| Port:                | traffic port |
+| Healthy threshold:   | 5            |
+| Unhealthy threshold: | 2            |
+| Timeout:             | 5 seconds    |
+| Interval:            | 30 seconds   |
+| Success codes:       | 200          |
 
 click **Next: Register Targets**
 
@@ -438,10 +441,11 @@ _Registered targets_
 (select instance and click **Add to registered**)
 
 | Instance            | Name             | Port | State   | Security groups                                | Zone       |
-| ------------------- | ---------------- | ---- | ------- | ---------------------------------------------- | ---------- |
+| :------------------ | :--------------- | :--- | :------ | :--------------------------------------------- | :--------- |
 | i-0bb517ecbd4c32e62 | cibmtr-smart-dev | 8060 | running | default-ssh-nmdp-aws, cibmtr-smart-sandbox-... | us-east-1b |
 
 click **Next: Review**
 
-_Step 6: Review_  
+_Step 6: Review_
+
 click **Create**
