@@ -21,6 +21,7 @@ _Step 3: Configure Instance Details_
 | Network:                       | vpc-2b2fef4a \| default-vpc                                 |
 | Subnet:                        | subnet-1e6bcd46 \| dev-apps-subnet-2 \| us-east-1b          |
 | Auto-assign Public IP:         | Enable (_note: workaround for problems accessing apt repo_) |
+| Placement group:               | [ ] Add instance to placement group.                        |
 | IAM role:                      | None                                                        |
 | Shutdown behavior:             | Stop                                                        |
 | Enable termination protection: | [ ] Protect against accidental termination                  |
@@ -250,7 +251,11 @@ cibmtr-smart-dev-stu3.b12x.org.
 
 ### Example ELB CNAME Creation
 
-Using AWS Route 53 ...  
+Define CNAME associated with ELB's DNS name.
+
+Open AWS Route 53 console  
+under DNS management, click **Hosted zones**  
+click **b12x.org.**  
 click **Create Record Set**
 
 |     |     |
