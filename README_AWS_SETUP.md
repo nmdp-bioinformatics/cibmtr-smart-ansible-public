@@ -1,6 +1,6 @@
 ## EC2 Instance
 
-Open EC2 Console and click **Launch Instance**
+From EC2 Console, click **Launch Instance**
 
 _Step 1: Choose an Amazon Machine Image (AMI)_
 
@@ -14,17 +14,17 @@ click **Next: Configure Instance Details**
 
 _Step 3: Configure Instance Details_
 
-Number of instances:  1  
-Purchasing option: [ ] Request spot instances  
-Network:  vpc-2b2fef4a | default-vpc  
-Subnet:  subnet-1e6bcd46 | dev-apps-subnet-2 | us-east-1b  
-Auto-assign Public IP:  Enable (note: this is workaround for problems accesing apt repo)  
-IAM role:  None  
-Shutdown behavior:  Stop  
-Enable termination protection:  [ ] Protect against accidental termination  
-Monitoring:  [ ] Enable CloudWatch detailed monitoring  
-Tenancy:  Shared - Run a shared hardware instance  
-T2 Unlimited:  [ ] Enable
+| Number of instances: | 1 |
+| Purchasing option: | [ ] Request spot instances |
+| Network: | vpc-2b2fef4a \| default-vpc |
+| Subnet: | subnet-1e6bcd46 \| dev-apps-subnet-2 \| us-east-1b |
+| Auto-assign Public IP: | Enable (note: this is workaround for problems accesing apt repo) |
+| IAM role: | None |
+| Shutdown behavior: | Stop |
+| Enable termination protection: | [ ] Protect against accidental termination |
+| Monitoring: | [ ] Enable CloudWatch detailed monitoring |
+| Tenancy: | Shared - Run a shared hardware instance |
+| T2 Unlimited: | [ ] Enable |
 
 _Network interfaces_
 
@@ -69,7 +69,8 @@ _Step 7: Review Instance Launch_
 
 click **Launch**
 
-_Select an existing key pair or create a new key pair_  
+_Select an existing key pair or create a new key pair_
+
 Choose an existing key pair  
 jschneid_nmdp  
 [x] I acknowledge that I have access to the selected private key file (jschneid_nmdp.pem), and
@@ -159,9 +160,9 @@ ansible-playbook site.yml -i "localhost," -c local \
 
 ### cibmtr-smart-ansible-elb
 
-Group name:  cibmtr-smart-ansible-elb  
-Description:  load balancer for (Ansible-based) standalone SMART sandbox  
-VPC:  vpc-2b2fef4a | default-vpc
+| Group name: | cibmtr-smart-ansible-elb |
+| Description: | load balancer for (Ansible-based) standalone SMART sandbox |
+| VPC: | vpc-2b2fef4a \| default-vpc |
 
 _Inbound_
 
@@ -240,14 +241,16 @@ cibmtr-smart-dev-stu3.b12x.org.
 
 ### Example ELB CNAME Creation
 
-Route 53  
-click **Create Record Set**  
-Name:  cibmtr-smart-dev-auth [.b12x.org.]  
-Type:  CNAME - Canonical name  
-Alias:  No
-TTL (Seconds):  3600  
-Value:  cibmtr-smart-dev-auth-560736173.us-east-1.elb.amazonaws.com  
-Routing Policy:  Simple
+Using AWS Route 53 ...  
+click **Create Record Set**
+
+| Name: | cibmtr-smart-dev-auth [.b12x.org.] |
+| Type: | CNAME - Canonical name |
+| Alias: | No |
+| TTL (Seconds): | 3600 |
+| Value: | cibmtr-smart-dev-auth-560736173.us-east-1.elb.amazonaws.com |
+| Routing Policy:  Simple |
+
 click **Create**
 
 
@@ -257,52 +260,59 @@ Use AWS EC2 console to define ELB instance for each exposed service.
 
 ### Auth Server
 
-(DNS Name:  cibmtr-smart-dev-auth.b12x.org)  
-ELB Name:  cibmtr-smart-dev-auth  
-Protocol:  HTTP  
-Port:  8060  
+(DNS CNAME:  cibmtr-smart-dev-auth.b12x.org)
+
+| ELB Name: | cibmtr-smart-dev-auth |
+| Protocol: | HTTP |
+| Port: | 8060 |
 
 ### DSTU2 API Server
 
-(DNS Name:  cibmtr-smart-dev-dstu2.b12x.org)  
-ELB Name:  cibmtr-smart-dev-dstu2  
-Protocol:  HTTP  
-Port:  8071  
+(DNS CNAME:  cibmtr-smart-dev-dstu2.b12x.org)
+
+| ELB Name: | cibmtr-smart-dev-dstu2 |
+| Protocol: | HTTP |
+| Port: | 8071 |
 
 ### STU3 API Server
 
-(DNS Name:  cibmtr-smart-dev-stu3.b12x.org)  
-ELB Name:  cibmtr-smart-dev-stu3  
-Protocol:  HTTP  
-Port:  8074  
+(DNS CNAME:  cibmtr-smart-dev-stu3.b12x.org)
+
+| ELB Name: | cibmtr-smart-dev-stu3 |
+| Protocol: | HTTP |
+| Port: | 8074 |
 
 ### Sandbox Manager API Server
 
-(DNS Name:  cibmtr-smart-dev-sandman-api.b12x.org)  
-ELB Name:  cibmtr-smart-dev-sandman-api  
-Protocol:  HTTP  
-Port:  12000  
+(DNS CNAME:  cibmtr-smart-dev-sandman-api.b12x.org)
+
+| ELB Name: | cibmtr-smart-dev-sandman-api |
+| Protocol: | HTTP |
+| Port: | 12000 |
 
 ### Sandbox Manager
 
-(DNS Name:  cibmtr-smart-dev-sandman.b12x.org)  
-ELB Name:  cibmtr-smart-dev-sandman  
-Protocol:  HTTP  
-Port:  8080  
+(DNS CNAME:  cibmtr-smart-dev-sandman.b12x.org)
+
+| ELB Name: | cibmtr-smart-dev-sandman |
+| Protocol: | HTTP |
+| Port: | 8080 |
 
 ### Password Management App
 
-(DNS Name:  cibmtr-smart-dev-pwm.b12x.org)  
-ELB Name:  cibmtr-smart-dev-pwm  
-Protocol:  HTTP  
-Port:  8092  
+(DNS CNAME:  cibmtr-smart-dev-pwm.b12x.org)
+
+| ELB Name: | cibmtr-smart-dev-pwm |
+| Protocol: | HTTP |
+| Port: | 8092 |
 
 ### SMART Apps
 
-(DNS Name:  cibmtr-smart-dev-apps.b12x.org)  
-ELB Name:  cibmtr-smart-dev-apps  
-Protocol:  HTTP  
-Port:  8093  
+(DNS CNAME:  cibmtr-smart-dev-apps.b12x.org)
+
+| ELB Name:  cibmtr-smart-dev-apps |
+| Protocol:  HTTP |
+| Port:  8093 |
 
 ### ELB Setup Example
 
@@ -315,9 +325,9 @@ under _Application Load Balancer_, click **Create** button
 
 _Step 1: Configure Load Balancer_
 
-Name:  cibmtr-smart-dev-auth  
-Scheme:  internet-facing  
-IP Address Type:  ipv4
+| Name: | cibmtr-smart-dev-auth |
+| Scheme: | internet-facing |
+| IP Address Type: | ipv4 |
 
 _Listeners_  
 
@@ -325,7 +335,8 @@ _Listeners_
 | ---------------------- | ------------------ |
 | HTTPS                  | 443                |
 
-_Availability Zones_  
+_Availability Zones_
+
 VPC: vpc-2b2fef4a (10.223.0.0/16) | default-vpc
 
 | Availability Zone | Subnet ID       | Subnet IPv4 CIDR | Name              |
@@ -345,7 +356,8 @@ _Tags_
 
 click **Next: Configure Security Settings** button
 
-_Step 2: Configure Security Setting_  
+_Step 2: Configure Security Setting_
+
 _Select default certificate_  
 Certificate type:  Choose a certificate from ACM (recommended)  
 Certificate name:  \*.b12x.org (arn:aws:acm:us-east-1:682793961433:certificate/8e017c31-7fe0-4648-989d-393891f4298e)  
