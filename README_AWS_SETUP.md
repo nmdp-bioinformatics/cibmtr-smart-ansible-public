@@ -102,7 +102,8 @@ Install extra Ubuntu packages.
 sudo apt update
 sudo apt -y upgrade
 sudo apt -y install curl git python-pycurl python-pip python-yaml \
- python-paramiko python-jinja2 unzip libwww-perl libdatetime-perl
+ python-paramiko python-jinja2 unzip libwww-perl libdatetime-perl \
+ pwgen
 ```
 
 Upgrade PIP, and install the correct version of Ansible.
