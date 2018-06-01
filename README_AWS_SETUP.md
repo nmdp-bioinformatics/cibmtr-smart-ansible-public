@@ -197,8 +197,6 @@ _Tags_
 | Project Charge Number | BC-N3Y-2D11-00-AGNIS     |
 | Environment           | prod                     |
 
-Note:  The assigned ID of cibmtr-smart-ansible-elb security group is sg-1625505e (referenced below).
-
 ### cibmtr-smart-ansible
 
 |     |     |
@@ -216,6 +214,8 @@ _Inbound_
 | Custom TCP Rule | TCP      | 9060        | sg-1625505e      | Auth Server                  |
 | Custom TCP Rule | TCP      | 9070 - 9099 | sg-1625505e      | Sandbox Manager & SMART Apps |
 | Custom TCP Rule | TCP      | 12000       | sg-1625505e      | Sandbox Manager API          |
+
+Note:  sg-1625505e is the ID of the cibmtr-smart-ansible-elb security group (described above).
 
 _Outbound_  
 
