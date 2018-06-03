@@ -26,9 +26,10 @@
   <settings modifyTime="2017-01-07T15:13:01Z" modifyUser="default|cn=admin,ou=admins,dc=smarthealthit,dc=org">
     <setting key="pwm.securityKey" syntax="PASSWORD" syntaxVersion="0" modifyTime="2015-11-05T17:41:27Z">
       <label>Security Key</label>
-      <!--Note: This value is encrypted and can not be edited directly.-->
-      <!--Please use the Configuration Manager GUI to modify this value.-->
-      <value>{{pwm_securitykey_encrypted}}</value>
+      <!--Note: This value is typically encrypted and can not be edited directly.-->
+      <!--However, the plaintext="true" attribute enables use of a plaintext password here.-->
+      <!--Otherwise, please use the Configuration Manager GUI to modify this value.-->
+      <value plaintext="true">{{pwm_securitykey_encrypted}}</value>
     </setting>
     <setting key="db.classname" syntax="STRING" syntaxVersion="0" modifyTime="2015-11-05T17:44:31Z">
       <label>Database Class</label>
