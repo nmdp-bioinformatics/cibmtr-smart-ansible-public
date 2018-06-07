@@ -117,18 +117,17 @@ Clone the cibmtr-smart-ansible-public git repository (and verify the active
 branch is cibmtr/develop/2.4.2).
 
 ```
-git clone https://github.com/jschneid-nmdp/cibmtr-smart-ansible-public.git
+git clone https://github.com/nmdp-bioinformatics/cibmtr-smart-ansible-public.git
 cd cibmtr-smart-ansible-public
 git branch
 \* cibmtr/develop/2.4.2
 ```
 
-(Optional) Add upstream and upstream-vendor git remotes.
+(Optional) Add upstream git remote.
 
 ```
 git remote -v
-git remote add upstream https://github.com/nmdp-bioinformatics/cibmtr-smart-ansible-public.git
-git remote add upstream-vendor https://github.com/smart-on-fhir/installer.git
+git remote add upstream https://github.com/smart-on-fhir/installer.git
 ```
 
 Download the Ansible Galaxy roles.
