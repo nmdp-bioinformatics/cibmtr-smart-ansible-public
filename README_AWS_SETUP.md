@@ -156,6 +156,80 @@ rm roles/common-role/templates/nginx_gateway_template.j2.orig
 
 Define ELB setup and corresponding CNAME DNS entries (see sections below).
 
+Use pwgen to generate password values for use in the aws-dev-secrets.yml file.
+
+```
+pwgen -s
+```
+
+Modify the **aws-dev-secrets.yml** file, replacing the default values for
+various settings with strong, randomly generated passwords.  Additionally
+(for a sandbox setup with everything running in the same EC2 instance) assign
+the same value to both *mysql_password* and *pwm_db_password_encrypted*.
+Example:
+
+```
+cat environments/aws-dev-secrets.yml
+```
+
+```
+---
+hosting_userpass: ""
+keystore_password: "7SGfJGSvR4fqmxc4f6HVvZJpLx68mJau"
+hspc_platform_jwt_key: "Kix3sCc0MmibUa0wXNiV53srfcXQ0bAx"
+aws_access_key_id: "changeme"
+aws_secret_access_key: "changeme"
+aws_ec2_volume_id: "changeme"
+aws_region: "changeme"
+mysql_root_pass: "rN6lyIGimUm7HYHO94pga59FFi3JiZxA"
+mysql_password: "K4buYt0tIm2067Js0PRm0I6kCrP0CuyN"
+auth_server_admin_password: "vW5esXlHjSpoXG8fgrB9RHjprWp2Bv3P"
+sandbox_server_admin_access_client_secret: "93h3STktb6H7e7uSz2SQ8KuR2lM5T61H"
+certificate_crt_filename: "self-signed-certificate.crt"
+certificate_key_filename: "self-signed-certificate.key"
+email_smtp_address: "email-smtp.us-east-1.amazonaws.com"
+email_smtp_username: "MZCEPMRKYQVLVRSYN8JQ"
+email_smtp_password_encrypted: "3YuqnBwmtsi2EGu9u3WewQiqfuB8+eLsE1WnN/+NBY/M"
+apacheds_server_system_admin_password: "secret"
+apacheds_server_sandbox_admin_password: "HKi19rcF3ZsAyR57wDVhC3QgEc3UaDUZ"
+pwm_configpasswordhash: "W5GoicgZy38dW56a5HJawEyUqYF6wYdn"
+pwm_securitykey_encrypted: "Ga7nRLktDTyKP6IOa8d3rp1XjBk03Zpk"
+pwm_db_password_encrypted: "K4buYt0tIm2067Js0PRm0I6kCrP0CuyN"
+pwm_ldap_proxy_password_encrypted: "secret"
+api_server_oauth2_clientSecret: "70Oa65FY6yq3JHomj6lmaUKTFI2GLKaA"
+messaging_mail_server_username: "MZCEPMRKYQVLVRSYN8JQ"
+messaging_mail_server_password: "3YuqnBwmtsi2EGu9u3WewQiqfuB8+eLsE1WnN/+NBY/M"
+```
+
+The above example contains email smtp and messaging mail server credentials.
+It uses the same username and password for both email and messaging.  The
+example values mimic an email credential for Amazon Simple Email Service
+(SES).
+
+For email functionality using Amazon SES, also modify the **aws-dev.yml**
+file to use email addresses which have been validated for SES.
+
+```
+grep _address environments/aws-dev.yml
+```
+
+```
+email_admin_address: "my_admin@example.com"
+email_contact_addresss: "my_contact@example.com"
+```
+
+To lock down the default "demo" login (with default password "demo") modify
+the *apacheds_server_sandbox_demo_password* setting in the ApacheDS defaults
+**main.yml** file.
+
+```
+grep demo_password roles/apacheds/defaults/main.yml
+```
+
+```
+apacheds_server_sandbox_demo_password: "Kp8fYxs5pKhXeVy2SHQYs3JXFrOko81M"
+```
+
 Run the site.yml playbook for the aws-dev environment.
 
 ```
