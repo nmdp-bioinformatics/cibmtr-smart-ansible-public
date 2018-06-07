@@ -92,8 +92,8 @@ See also:  https://github.com/smart-on-fhir/installer
 Log into the EC2 instance via SSH.
 
 ```
-ssh jschneider@jump.b12x.org
-ssh -i ~/aws/jschneid_nmdp.pem ubuntu@ec2-35-168-14-94.compute-1.amazonaws.com
+ssh username@jump.b12x.org
+ssh -i ~/aws/username.pem ubuntu@10.223.14.225
 ```
 
 Install extra Ubuntu packages.
@@ -129,12 +129,6 @@ git branch
 git remote -v
 git remote add upstream https://github.com/nmdp-bioinformatics/cibmtr-smart-ansible-public.git
 git remote add upstream-vendor https://github.com/smart-on-fhir/installer.git
-```
-
-Switch to **aws-setup** branch.
-
-```
-git checkout aws-setup
 ```
 
 Download the Ansible Galaxy roles.
@@ -201,13 +195,13 @@ messaging_mail_server_username: "MZCEPMRKYQVLVRSYN8JQ"
 messaging_mail_server_password: "3YuqnBwmtsi2EGu9u3WewQiqfuB8+eLsE1WnN/+NBY/M"
 ```
 
-The above example contains email smtp and messaging mail server credentials.
-It uses the same username and password for both email and messaging.  The
-example values mimic an email credential for Amazon Simple Email Service
-(SES).
+In addition to the various randomly generated passwords, the above example
+also contains email smtp and messaging mail server credentials.  It uses the
+same username and password for both email and messaging.  The example values
+mimic an email credential for Amazon Simple Email Service (SES).
 
-For email functionality using Amazon SES, also modify the **aws-dev.yml**
-file to use email addresses which have been validated for SES.
+To use Amazon SES for email, also modify the **aws-dev.yml** file to contain
+email addresses which have been validated for SES.
 
 ```
 grep _address environments/aws-dev.yml
