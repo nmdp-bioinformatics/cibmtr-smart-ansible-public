@@ -1,6 +1,6 @@
 ---
-# this file contains properties for the local environment that are not sensitive
-# for the local environment, sensitive properties are found in the Vagrantfile
+# this file contains properties for the development environment that are not sensitive
+# for the environment, sensitive properties are found in the aws-dev-secrets.yml file
 installer_user: "ubuntu"
 services_host: "localhost"
 use_secure_http: true
