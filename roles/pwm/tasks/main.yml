@@ -21,8 +21,8 @@
 - name: "checkout repository pwm_repo"
   when: enable_pwm
   become_user: "{{hosting_username}}"
-  git: repo="{{smart_repo_base}}/{{pwm_repo}}"
-       version="{{pwm_branch}}"
+  git: repo="https://github.com/nmdp-bioinformatics/{{pwm_repo}}"
+       version="hotfix/1.0.2-cibmtr"
        dest="{{hosting_user_home}}/{{pwm_project}}/{{pwm_repo}}"
        update={{update_repositories}}
        force=yes

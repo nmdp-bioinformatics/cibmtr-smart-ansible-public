@@ -4,6 +4,7 @@
 installer_user: "vagrant"
 services_host: "localhost"
 use_secure_http: false
+using_aws_elb: false
 use_custom_ssl_certificates: false
 custom_ssl_certificates_path:
 aws_output_format: "json"

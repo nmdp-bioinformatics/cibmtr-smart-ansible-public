@@ -6,7 +6,7 @@ upstream mock_api_stu3 {
 server {
     server_name {{mock_api_stu3_server_external_host}};
 
-{% if use_secure_http %}
+{% if use_secure_http and not using_aws_elb %}
     listen {{mock_api_stu3_server_external_port}} ssl;
     ssl_certificate {{nginx_home}}/ssl/{{certificate_crt_filename}};
     ssl_certificate_key {{nginx_home}}/ssl/{{certificate_key_filename}};
@@ -29,7 +29,7 @@ server {
     }
 }
 
-{% if mock_api_stu3_server_external_port != 80 and use_secure_http %}
+{% if mock_api_stu3_server_external_port != 80 and use_secure_http and not using_aws_elb %}
 server {
     server_name {{mock_api_stu3_server_external_host}};
     listen 80;
