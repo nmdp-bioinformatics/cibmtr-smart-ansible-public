@@ -25,8 +25,8 @@ auth_server_external_port: "443"
 auth_server_artifact_version: "1.9.9"
 auth_server_initial_memory: "32M"
 auth_server_max_memory: "128M"
-auth_server_newUserUrl: "{{pwm_server_external_url}}public/newuser"
-auth_server_forgotPasswordUrl: "{{pwm_server_external_url}}public/forgottenpassword"
+auth_server_newUserUrl: "{{pwm_server_external_url}}/public/newuser"
+auth_server_forgotPasswordUrl: "{{pwm_server_external_url}}/public/forgottenpassword"
 auth_mysql_reset_database: true
 api_server_oauth2_clientId: "hspc_resource_server"
 enable_monitoring: false
