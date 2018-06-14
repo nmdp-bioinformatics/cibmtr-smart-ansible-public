@@ -378,9 +378,10 @@ Use AWS EC2 console to define ELB instance for each exposed service.
 
 |     |     |
 | --- | --- |
-| ELB Name: | cibmtr-smart-dev-sandman-api |
-| Protocol: | HTTP                         |
-| Port:     | 12000                        |
+| ELB Name:          | cibmtr-smart-dev-sandman-api |
+| Protocol:          | HTTP                         |
+| Port:              | 12000                        |
+| Health Check Path: | /envinfo                     |
 
 ### Sandbox Manager
 
@@ -398,9 +399,10 @@ Use AWS EC2 console to define ELB instance for each exposed service.
 
 |     |     |
 | --- | --- |
-| ELB Name: | cibmtr-smart-dev-pwm |
-| Protocol: | HTTP                 |
-| Port:     | 8092                 |
+| ELB Name:                   | cibmtr-smart-dev-pwm |
+| Protocol:                   | HTTP                 |
+| Port:                       | 8092                 |
+| Health Check Success Codes: | 302                  |
 
 ### SMART Apps
 
