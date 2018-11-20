@@ -74,10 +74,10 @@
 - name: "download jetty-runner"
   become_user: "{{hosting_username}}"
   maven_artifact:
-    group_id: "org.eclipse.jetty"
-    artifact_id: "jetty-runner"
-    version: "9.3.6.v20151106"
-    extension: "jar"
+    group_id: "{{jetty_runner_artifact_group_id}}"
+    artifact_id: "{{jetty_runner_artifact_artifact_id}}"
+    version: "{{jetty_runner_artifact_version}}"
+    extension: "{{jetty_runner_artifact_packaging}}"
     repository_url: "{{release_repository_url}}"
     dest: "{{hosting_user_home}}/{{jetty_runner_artifact_artifact_id}}-{{jetty_runner_artifact_version}}.{{jetty_runner_artifact_packaging}}"
 
