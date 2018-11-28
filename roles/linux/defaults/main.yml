@@ -46,7 +46,7 @@ update_repositories: "yes"
 # jetty_runner Artifact
 jetty_runner_artifact_group_id: "org.eclipse.jetty"
 jetty_runner_artifact_artifact_id: "jetty-runner"
-jetty_runner_artifact_version: "9.3.6.v20151106"
+jetty_runner_artifact_version: "9.4.12.v20180830"
 jetty_runner_artifact_packaging: "jar"
 jetty_runner_artifact_repository_url: "{{release_repository_url}}"
 jetty_runner_artifact_location: "{{m2_repo_folder}}/org/hspconsortium/reference/{{api_server_artifact_artifact_id}}/{{api_server_artifact_version}}/{{api_server_artifact_artifact_id}}-{{api_server_artifact_version}}.{{api_server_artifact_packaging}}"
